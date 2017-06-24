@@ -189,12 +189,12 @@ class Theme implements ThemeContract
 
         $themeInfo = $this->getThemeInfo($themeName);
 
-        $themePath = str_reaplace(base_path(), "", $themeInfo->get('path')).'/';
+        $themePath = str_replace(base_path(), "", $themeInfo->get('path')).'/';
         $assetPath = $this->config['theme.folders.assets'].'/';
         $fullPath = $themePath.$assetPath.$path;
 
         if (!file_exists($fullPath) && $themeInfo->has('parent') && !empty($themeInfo->get('parent'))) {
-            $themePath = str_reaplace(base_path(), "", $this->getThemeInfo($themeInfo->get('parent'))->get('path')).'/';
+            $themePath = str_replace(base_path(), "", $this->getThemeInfo($themeInfo->get('parent'))->get('path')).'/';
             $fullPath = $themePath.$assetPath.$path;
 
             return $this->app['url']->asset($fullPath, $secure);
